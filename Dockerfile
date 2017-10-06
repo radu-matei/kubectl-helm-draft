@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+LABEL maintainer Radu Matei <matei.radu94@gmail.com>
+
+# Latest versions for kubectl, helm and draft
 ENV KUBE_LATEST_VERSION="v1.8.0"
 ENV HELM_LATEST_VERSION="v2.6.2"
 ENV DRAFT_LATEST_VERSION="v0.7.0"
@@ -21,5 +24,8 @@ RUN mv linux-amd64/helm /usr/local/bin
 RUN curl -LO  https://github.com/Azure/draft/releases/download/${DRAFT_LATEST_VERSION}/draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
 RUN tar -xvf draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
 RUN mv linux-amd64/draft /usr/local/bin 
+
+# Expose port for kubectl proxy
+EXPOSE 8080
 
 ENTRYPOINT ["bash"]
