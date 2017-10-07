@@ -36,7 +36,7 @@ podTemplate(label: 'mypod', containers: [
                         usernameVariable: 'DOCKER_HUB_USER',
                         passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
                     
-                    kubectl get nodes
+                    sh "kubectl get nodes"
                 }
             }
         }
