@@ -19,11 +19,15 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 RUN curl -LO  https://storage.googleapis.com/kubernetes-helm/helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
 RUN tar -xvf helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin 
+RUN rm helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
 
 # Download and install draft
 RUN curl -LO  https://github.com/Azure/draft/releases/download/${DRAFT_LATEST_VERSION}/draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
 RUN tar -xvf draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
 RUN mv linux-amd64/draft /usr/local/bin 
+RUN rm draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
+
+RUN rm -rf linux-amd64
 
 # Expose port for kubectl proxy
 EXPOSE 8080
